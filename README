@@ -1,15 +1,25 @@
 DEC64: Decimal Floating Point
 
-This library contains initial attempts to port the brilliant work of *Douglas Crockford* ML64 (Windows/Intel MASM assembler) to NASM (Unix Assembly)
-and in the end to JavaScript.
+This library contains initial attempts to port the brilliant work of *Douglas Crockford* [ML64](https://msdn.microsoft.com/en-us/library/hb5z4sxd.aspx) (Windows/Intel MASM assembler).
 
-This will allow broader usage in modern languages, such as those compiling to JavaScript, NASM, SIMD, asm.js or WASM (Web Assembly).
+```
+; This file can be processed with Microsoft's ML64.exe. There might be other
+; assemblers that can process this file, but that has not been tested.
+```
 
-So far the `public` (function interface specs) and all uses of the `pad` macro have been removed.
+## Cross platform
 
-Please continue using this guide:
+We would like to convert it to NASM (Unix Assembly) and in the end to an executable (.exe) and JavaScript.
+Unfortunately I'm not on a Windows PC but on a Mac.
 
-[Assembly from masm to nasm](http://left404.com/2011/01/04/converting-x86-assembly-from-masm-to-nasm-3/)
+Looks like there IS a solution in the form of a cross-platform [SASM](https://github.com/Dman95/SASM) IDE including [Mac OSX build instructions](http://www.brianrhall.net/rss/installingsasmonamac)
+[premade Mac builds](https://github.com/Dman95/SASM/issues/57)
+
+This conversion will allow broader usage in modern languages, such as those compiling to JavaScript, NASM, SIMD, asm.js or WASM (Web Assembly).
+
+### Manual conversion
+
+You could try the manual conversion using this guide: [Assembly from masm to nasm](http://left404.com/2011/01/04/converting-x86-assembly-from-masm-to-nasm-3/)
 
 Ideally we should be able to decompile using this [recipe](http://reverseengineering.stackexchange.com/questions/10924/translate-assembly-to-c)
 - [compile assembly to executable](http://www.tutorialspoint.com/compile_assembly_online.php)
