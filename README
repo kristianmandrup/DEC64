@@ -13,7 +13,34 @@ We would like to convert it to NASM (Unix Assembly) and in the end to an executa
 
 A solution could be to try running `ML64.exe` compiler on Mac via [Wine](https://www.winehq.org/) or similar compatibility layer.
 
-You could also try [MASM_OSX](https://github.com/janka102/MASM_OSX) to use Xcode to edit, compile, and debug MASM files.
+You could also try [MASM_OSX](https://github.com/janka102/MASM_OSX) to use Xcode or Visual Studio Code (VSC) to edit, compile, and debug MASM files. 
+
+I was able to build the following example from Xcode
+
+```
+TITLE MASM Template       (main.asm)
+
+; Description:
+; 
+; Revision date:
+
+INCLUDE Irvine32.inc
+
+.data
+myMessage BYTE "MASM program example",0dh,0ah,0
+
+.code
+main PROC
+    call Clrscr
+
+    mov  edx,OFFSET myMessage
+    call WriteString
+
+    exit
+main ENDP
+
+END main
+```
 
 There IS also a cross-platform [SASM](https://github.com/Dman95/SASM) Assembler IDE which includes [Mac OSX build instructions](http://www.brianrhall.net/rss/installingsasmonamac) and some [premade Mac builds](https://github.com/Dman95/SASM/issues/57)
 I have not yet been able to make it pick up Qt however.
