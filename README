@@ -42,6 +42,15 @@ main ENDP
 END main
 ```
 
+Which I could then execute from terminal and it printed `MASM program example`
+
+```
+$ ./bin/template
+MASM program example
+```
+
+This looks promising!
+
 There IS also a cross-platform [SASM](https://github.com/Dman95/SASM) Assembler IDE which includes [Mac OSX build instructions](http://www.brianrhall.net/rss/installingsasmonamac) and some [premade Mac builds](https://github.com/Dman95/SASM/issues/57)
 I have not yet been able to make it pick up Qt however.
 
