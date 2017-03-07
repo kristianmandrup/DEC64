@@ -51,6 +51,72 @@ MASM program example
 
 Looks promising!
 
+So far having problems with the following:
+
+`dec64_code segment para execute`
+
+But this works!?
+
+`dec64_data segment para read`
+
+Since there is a `dec64_data ends`
+
+This fails:
+
+```
+dec64_exponent: function_with_one_parameter
+  movsx   r0,r1_b             ; r0 is the exponent
+```
+
+While this will build `dec64_exponent: function_with_one_parameter`
+
+`movsx` will compile if within an `if` clause that will be false!
+
+```
+if UNIX
+movsx   r0,r1_b             ; r0 is the exponent
+endif
+```
+
+Looks like there are some slight differences to be aware of! [writing-64-bit-assembly-on-mac-os-x](http://www.idryman.org/blog/2014/12/02/writing-64-bit-assembly-on-mac-os-x/)
+
+The error is that msvsx references r0, which is defined using `rax`
+
+As it is widely advertised, modern x86_64 processors have 64-bit registers that can be used in backward-compatible fashion as 32-bit registers, 16-bit registers and even 8-bit registers, for example:
+
+```
+0x1122334455667788
+  ================ rax (64 bits)
+          ======== eax (32 bits)
+              ====  ax (16 bits)
+              ==    ah (8 bits)
+                ==  al (8 bits)
+```
+
+So it looks like I don't have the rax register available! Looks like I need to tell Xcode to [compile for x64 bit](https://metricpanda.com/compiling-nasm-with-xcode-in-a-cpp-project)
+
+`/usr/local/bin/nasm -f macho64 ${INPUT_FILE_PATH} -o ${SCRIPT_OUTPUT_FILE_0}`
+
+I see my Makefile uses `32`bit!
+
+If you’d rather create a 32-bit object file, you can supply the `-arch i386` parameter which is exactly what I have:
+
+`CFLAGS=-Wall -O0 -g -arch i386 -lAlong32 -Llib -Wl,-no_pie`
+
+To get started on writing OSX assembly, you need to understand OSX executable file format – the Mach-O file format. It’s similar to ELF, but instead of sections of data, bss, and text, it has segments that contains sections.
+
+[x64-osx-assembly-mov](http://stackoverflow.com/questions/26899769/x64-osx-assembly-mov)
+
+`mov tmp, rax` is illegal because nasm requires square brackets [] around memory operands. As such, what you want is mov [tmp], rax. This is of course mentioned in the nasm manual, see the section aptly named NASM Requires Square Brackets For Memory References.
+
+
+[More Assembly OSX tips](https://lord.io/blog/2014/assembly-on-osx/)
+
+
+### Many more Compiler Experiments...
+
+Try [visual MASM](http://www.visualmasm.com/)
+
 Perhaps we could also run `ml64.exe` directly via `Wine`? Check [Microsoft Macro Assembler 8.0 (MASM) Package (x86)](https://www.microsoft.com/en-us/download/confirmation.aspx?id=12654)
 
 I tried opening `Wine Dev` and running `wine MASMsetup.EXE` saying no to installing `Gecko` (UI). It failed with `Visual Studio EE 2005 required`. Others suggest extracting it from [Windows Driver Kit (WDK)](https://www.microsoft.com/en-us/download/details.aspx?id=11800) a 620Mb install!
@@ -74,6 +140,12 @@ Ideally we should be able to decompile using this [recipe](http://reverseenginee
 
 If we ever get to a working `dec64.c` file either manually or via decompilation we could use [require-emscripten](https://www.npmjs.com/package/require-emscripten)
 to convert the `.c` file to a Node JavaScript `.js` file via [Emscripten](https://github.com/kripken/emscripten)
+
+## Mac OSX adventure
+
+I'm giving up on my end. If anyone has a Windows out there wih Visual Studio or some other way to compile, debug and help port this lib, please do!
+
+Thanks!
 
 ## Credits
 
