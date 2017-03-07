@@ -7,7 +7,7 @@ This library contains initial attempts to port the brilliant work of *Douglas Cr
 ; assemblers that can process this file, but that has not been tested.
 ```
 
-## Cross platform
+## Cross platform compilation/debugging!?
 
 We would like to convert it to NASM (Unix Assembly) and in the end to an executable (.exe) and JavaScript. Unfortunately I'm not on a Windows PC but on a Mac.
 
@@ -49,7 +49,15 @@ $ ./bin/template
 MASM program example
 ```
 
-This looks promising!
+Looks promising!
+
+Perhaps we could also run `ml64.exe` directly via `Wine`? Check [Microsoft Macro Assembler 8.0 (MASM) Package (x86)](https://www.microsoft.com/en-us/download/confirmation.aspx?id=12654)
+
+I tried opening `Wine Dev` and running `wine MASMsetup.EXE` saying no to installing `Gecko` (UI). It failed with `Visual Studio EE 2005 required`. Others suggest extracting it from [Windows Driver Kit (WDK)](https://www.microsoft.com/en-us/download/details.aspx?id=11800) a 620Mb install!
+
+Yet another option could be [mingw-w64](https://sourceforge.net/projects/mingw-w64/) - *Supports 32-bit and 64-bit Windows i386/x64* or [For darwin](http://mingw-w64.org/doku.php/download/darwin)
+
+No luck trying to figure out how to use mingw-w64 for Windows via Wine!
 
 There IS also a cross-platform [SASM](https://github.com/Dman95/SASM) Assembler IDE which includes [Mac OSX build instructions](http://www.brianrhall.net/rss/installingsasmonamac) and some [premade Mac builds](https://github.com/Dman95/SASM/issues/57)
 I have not yet been able to make it pick up Qt however.
