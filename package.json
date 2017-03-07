@@ -1,0 +1,32 @@
+{
+  "name": "dec64",
+  "version": "0.1.0",
+  "description": "Dec64 for C and JavaScript",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "ava"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kristianmandrup/DEC64.git"
+  },
+  "keywords": [
+    "dec64"
+  ],
+  "author": "Kristian Mandrup",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kristianmandrup/DEC64/issues"
+  },
+  "homepage": "https://github.com/kristianmandrup/DEC64#readme",
+  "dependencies": {
+    "ava": "^0.18.2",
+    "require-emscripten": "^2.4.1"
+  },
+  "devDependencies": {
+    "ava": "^0.18.2"
+  }
+}

@@ -1,5 +1,25 @@
 DEC64: Decimal Floating Point
 
+This library contains initial attempts to port the brilliant work of *Douglas Crockford* ML64 (Windows/Intel MASM assembler) to NASM (Unix Assembly)
+and in the end to JavaScript.
+
+This will allow broader usage in modern languages, such as those compiling to JavaScript, NASM, SIMD, asm.js or WASM (Web Assembly).
+
+So far the `public` (function interface specs) and all uses of the `pad` macro have been removed.
+
+Please continue using this guide:
+
+[Assembly from masm to nasm](http://left404.com/2011/01/04/converting-x86-assembly-from-masm-to-nasm-3/)
+
+Ideally we should be able to decompile using this [recipe](http://reverseengineering.stackexchange.com/questions/10924/translate-assembly-to-c)
+- [compile assembly to executable](http://www.tutorialspoint.com/compile_assembly_online.php)
+- [executable to C decompiler](https://retdec.com/decompilation/)
+
+If we ever get to a working `dec64.c` file either manually or via decompilation we could use [require-emscripten](https://www.npmjs.com/package/require-emscripten)
+to convert the `.c` file to a Node JavaScript `.js` file via [Emscripten](https://github.com/kripken/emscripten)
+
+## Credits
+
 Douglas Crockford
 douglas@crockford.com
 
