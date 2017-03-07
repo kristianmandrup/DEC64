@@ -9,11 +9,14 @@ This library contains initial attempts to port the brilliant work of *Douglas Cr
 
 ## Cross platform
 
-We would like to convert it to NASM (Unix Assembly) and in the end to an executable (.exe) and JavaScript.
-Unfortunately I'm not on a Windows PC but on a Mac.
+We would like to convert it to NASM (Unix Assembly) and in the end to an executable (.exe) and JavaScript. Unfortunately I'm not on a Windows PC but on a Mac.
 
-Looks like there IS a solution in the form of a cross-platform [SASM](https://github.com/Dman95/SASM) IDE including [Mac OSX build instructions](http://www.brianrhall.net/rss/installingsasmonamac)
-[premade Mac builds](https://github.com/Dman95/SASM/issues/57)
+A solution could be to try running `ML64.exe` compiler on Mac via [Wine](https://www.winehq.org/) or similar compatibility layer.
+
+You could also try [MASM_OSX](https://github.com/janka102/MASM_OSX) to use Xcode to edit, compile, and debug MASM files.
+
+There IS also a cross-platform [SASM](https://github.com/Dman95/SASM) Assembler IDE which includes [Mac OSX build instructions](http://www.brianrhall.net/rss/installingsasmonamac) and some [premade Mac builds](https://github.com/Dman95/SASM/issues/57)
+I have not yet been able to make it pick up Qt however.
 
 This conversion will allow broader usage in modern languages, such as those compiling to JavaScript, NASM, SIMD, asm.js or WASM (Web Assembly).
 
